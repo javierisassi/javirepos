@@ -1,0 +1,6 @@
+syntax = "proto2";
+package worldmsg;
+// the message shall consist of a single string
+message World {
+    required string World = 1;
+}

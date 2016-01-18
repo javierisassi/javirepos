@@ -1,0 +1,7 @@
+syntax = "proto2";
+package hellomsg;
+// the message shall consist of a single string
+message Hello {
+    required string hello = 1;
+
+}
