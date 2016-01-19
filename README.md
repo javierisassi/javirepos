@@ -21,6 +21,8 @@ Install scons >apt-get install scons
 Install zeromq from  zeromq.org
 Install the java bindings from zeromq.org
 Install protobuffers from developers.google.com/protocol-buffers
+Install maven so you can create a jar file for the protocol buffers
+copy the protocol buffers jar file to the local project in third_party
 
 To build:
 
