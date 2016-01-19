@@ -1,5 +1,8 @@
 import org.zeromq.ZMQ;
 
+//protobuf dynamically created class 
+import hellomsg.HelloOuterClass;
+
 public class hwclient {
 
     public static void main(String[] args) {

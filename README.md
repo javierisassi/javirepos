@@ -23,7 +23,7 @@ Install the java bindings from zeromq.org
 Install protobuffers from developers.google.com/protocol-buffers
 Install maven so you can create a jar file for the protocol buffers
 follow the instructions in the java directory of the protocol buffers project
-copy the protocol buffers jar file to the local project in third_party
+For simplicty all third party java libs are in /usr/local/share/java
 
 To build:
 
