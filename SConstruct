@@ -30,8 +30,7 @@ env.Append( JAVACLASSPATH = ['/usr/local/share/java/zmq.jar'] )
 env.Append( JAVACLASSPATH = ['classes'] )
 
 #build the protocol buffers classes
-t = env.Java('classes', 'msg/java/hellomsg')
-t = env.Java('classes', 'msg/java/worldmsg')
+t = env.Java('classes', ['msg/java/hellomsg','msg/java/worldmsg'])
 # make 2 jars. one for the hello msg client and the other for the world message
 #server
 env.Jar('classes/hellomsg.jar', 'classes/hellomsg')
@@ -39,5 +38,3 @@ env.Jar('classes/worldmsg.jar', 'classes/worldmsg')
 
 #lastly build the client and the server
 t = env.Java('classes', 'src')
-
-#env.Jar('hwserver.jar', 'classes', JARCHDIR='classes')
