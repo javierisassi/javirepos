@@ -13,15 +13,16 @@ if env.GetOption('clean'):
 
 # build the protoco buffers
 Execute(Mkdir("msg/java"))
-#bldproto = env.Alias('Buildproto', env.Command('run.dummy', [], 'protoc --java_out=msg/java msg/*.proto'))
-#env.AlwaysBuild(bldproto)
-#Exit(0)
+
 def ProtobufTarget(target, action):
         proto = Environment(ENV = os.environ,
                             BUILDERS = { 'proto' : Builder(action = action) })
         AlwaysBuild(proto.proto(target = target, source = 'SConstruct'))
 
 ProtobufTarget('PROTOBUF', 'protoc --java_out=msg/java msg/*.proto')
+#copy the dynamicall protobuf java files to src directory for convenience
+Command("msg/java/hellomsg/HelloOuterClass.java", [], Copy("$TARGET", "src"))
+Command("msg/java/worldmsg/WorldOuterClass.java", [], Copy("$TARGET", "src"))
 
 #the project expect the following 2 jars to exist
 #append zmq, protocol buffer and classes directory
@@ -31,10 +32,6 @@ env.Append( JAVACLASSPATH = ['classes'] )
 
 #build the protocol buffers classes
 t = env.Java('classes', ['msg/java/hellomsg','msg/java/worldmsg'])
-# make 2 jars. one for the hello msg client and the other for the world message
-#server
-env.Jar('classes/hellomsg.jar', 'classes/hellomsg')
-env.Jar('classes/worldmsg.jar', 'classes/worldmsg')
 
 #lastly build the client and the server
-t = env.Java('classes', 'src')
+env.Java('classes', 'src')
