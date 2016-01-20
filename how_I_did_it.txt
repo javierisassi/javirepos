@@ -101,3 +101,17 @@
    Sending Hello 1
    Received Hello
 
+  Addendum
+    this shit is great.
+    to get this crap to build:
+    scons PROTOBUF
+    scons
+    scons -c
+    scons PROTOBUF
+    scons
+    scons -c
+    scons PROTOBUF
+    scons 
+
+    After that it builds okay with only 2 commands.
+    I need to learn about the stupid dependencies
