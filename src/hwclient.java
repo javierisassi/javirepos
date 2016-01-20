@@ -1,13 +1,14 @@
 import org.zeromq.ZMQ;
 
 //protobuf dynamically created class 
-import hellomsg.HelloOuterClass;
+import hellomsg.HelloOuterClass.Hello;
 
 public class hwclient {
 
     public static void main(String[] args) {
         ZMQ.Context context = ZMQ.context(1);
-
+        Hello.Builder msg = Hello.newBuilder();
+        msg.setHello("hello");
         //  Socket to talk to server
         System.out.println("Connecting to hello world server...");
 
@@ -15,7 +16,8 @@ public class hwclient {
         requester.connect("tcp://localhost:5555");
 
         for (int requestNbr = 0; requestNbr != 10; requestNbr++) {
-            String request = "Hello";
+            //String request = "Hello";
+            String request = msg.getHello();
             System.out.println("Sending Hello " + requestNbr);
             requester.send(request.getBytes(), 0);
 
