@@ -1,0 +1,86 @@
+   This my starter kit to develop java apps that uses zeromq and protocol
+   buffers as communication schemes. All bundled in a hello world for
+   show-N-tell. I started with Ubunut 14.04 Desktop and it should work
+   just as well on Fedora and CentOS. Just use yum instead of apt-get
+  
+   1. Install git
+   >sudo apt-get install git
+
+   2. Clone your bundle
+   >mkdir repos
+   >cd repos
+   for a bundle
+   >git clone -b master ../javirepos.bundle 
+
+
+   3. Create your sandbox
+   >mkdir javirepos
+   >cd javirepos/
+   >mkdir sandbox
+   >cd sandbox/
+
+   for bundle
+   >git clone ~/repos/javirepos
+   for github
+   >git clone http://github.com/javierisassi/javirepos.git
+
+   >cd javirepos/
+
+   4. Install scons and java
+   >sudo apt-get install -y scons
+   >sudo apt-get install -y openjdk-6-jdk
+  
+   5. Install zeromq (get the tar from zeromq.org>
+   >mkdir goods
+   >cd goods
+   mv ~/Downloads/zeromq-4.1.4.tar.gz .
+   46  mv ~/zeromq-4.1.4.tar.gz .
+   >tar -zxvf zeromq-4.1.4.tar.gz 
+   >cd zeromq-4.1.4/
+   >sudo apt-get install autoconf automake libtool g++ -y
+   >./autogen.sh 
+   >./configure --without-libsodium
+   >make
+   >sudo make install
+
+   6. Install java bindings for zeromq
+   >cd ~/goods
+   >git clone https://github.com/zeromq/jzmq.git
+   >cd jzmq/
+   >./autogen.sh
+   >./configure
+   >make
+   >sudo make install
+
+   7. Install protocol buffers
+   >cd ~/goods
+   >git clone https://github.com/google/protobuf.git
+   >cd protobuf/
+   >./autogen.sh
+   >./configure
+   >make
+   >sudo make install
+
+   8. Lastly update your library paths
+   >export LD_LIBRARY_PATH=/usr/local/lib
+   >sudo ldconfig /usr/local/lib
+
+   Thats  it now I got to my project and build
+   >cd ~/git/fermwood/javirepos/
+   >scons
+   jisassi@sasuke:~/git/fermwood/javirepos (master %):$ scons
+   scons: Reading SConscript files ...
+   Mkdir("msg/java")
+   scons: done reading SConscript files.
+   scons: Building targets ...
+   protoc --java_out=msg/java msg/*.proto
+   scons: done building targets.
+   jisassi@sasuke:~/git/fermwood/javirepos (master %):$ ./testhelloworld.sh 
+   test hello world
+   Connecting to hello world server...
+   Sending Hello 0
+   Received Hello
+   Received World 0
+   Sending Hello 1
+   Received Hello
+
