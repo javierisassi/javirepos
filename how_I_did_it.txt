@@ -61,7 +61,17 @@
    >make
    >sudo make install
 
-   8. Lastly update your library paths
+   8. Install maven and create proto jar
+   >sudo apt-get install maven
+   >cd java
+   >mvn test
+   >mvn install
+   (if mvn craps out just get the darn .jar.. and put it in /usr/local/share/java)
+   >wget http://mvnrepository.com/artifact/com.google.protobuf/protobuf-java/3.0.0-beta-2
+   >mv 
+   >sudo mv protobuf-java-3.0.0-beta-2.jar /usr/local/share/java
+
+   9. Lastly update your library paths
    >export LD_LIBRARY_PATH=/usr/local/lib
    >sudo ldconfig /usr/local/lib
 
