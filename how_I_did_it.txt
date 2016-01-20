@@ -88,16 +88,11 @@
    >sudo ldconfig /usr/local/lib
 
    Thats  it now I got to my project and build
-   >cd ~/git/fermwood/javirepos/
+   >cd ~/git/hub/javirepos/
+   >scons PROTOBUF
    >scons
-   jisassi@sasuke:~/git/fermwood/javirepos (master %):$ scons
-   scons: Reading SConscript files ...
-   Mkdir("msg/java")
-   scons: done reading SConscript files.
-   scons: Building targets ...
-   protoc --java_out=msg/java msg/*.proto
-   scons: done building targets.
-   jisassi@sasuke:~/git/fermwood/javirepos (master %):$ ./testhelloworld.sh 
+   goodie now run the test
+   jisassi@sasuke:~/git/hub/javirepos (master %):$ ./testhelloworld.sh 
    test hello world
    Connecting to hello world server...
    Sending Hello 0

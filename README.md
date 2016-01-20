@@ -16,7 +16,39 @@ Why?
 
 Because this tiny project puts together the tools of the trade.
 
+       __________                   ___________
+      |          |                 |           |        
+      | hwclient |                 | hwserver  |
+      |          |                 |           |
+       ----------                   -----------
+           |                            |
+           |                            |
+           |---- "Hello" -------------->|
+           |                            |
+           |                            |
+           |<------"World"--------------|
+           |                            |
+           |                            |
+           |                            |
+           |                            |
+           |                            |
+
+ 
+To the untrained eye the feat my look idiotic. Close inspection
+reveals the use of three, count them, three,
+ popular technologies, together:
+
+Protocol Buffers
+Zero MQ
+Scons
+
+The Java implementation (which of course is harde to install and run)
+is not by choice but If you put all this pieces you will be on 
+the starting point to develop highly scalable distributed solutions
+in multiple languges.
+
 What you need to do:
+
 Install scons >apt-get install scons
 Install zeromq from  zeromq.org
 Install the java bindings from zeromq.org
@@ -34,4 +66,4 @@ To Run:
 
 >./testhelloworld
 
-output:
+read more on the how_i_did_it.txt for specific commands and such
