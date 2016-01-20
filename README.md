@@ -59,8 +59,10 @@ For simplicty all third party java libs are in /usr/local/share/java
 
 To build:
 
-type scons PROTOBUF (yes 2 commands I am pissed off)
-type scons
+type 
+>scons PROTOBUF (yes 2 commands I am pissed off)
+type 
+>scons
 
 To Run:
 
