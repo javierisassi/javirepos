@@ -1,25 +1,28 @@
 env = Environment()
 import os
+import sys
+print 'Argument List:', str(sys.argv)
 #remove proto packages when clean is requested
 if env.GetOption('clean'):
-    Execute(Delete("msg/proto")) 
-    Execute(Delete("classes/hellomsg")) 
-    Execute(Delete("classes/hellomsg.jar")) 
-    Execute(Delete("classes/worldmsg")) 
-    Execute(Delete("classes/worldmsg.jar")) 
-    Execute(Delete("classes/hwclient.class")) 
-    Execute(Delete("classes/hwserver.class")) 
+    Execute(Delete("src/proto")) 
+    Execute(Delete("classes/")) 
     Exit(0)
-
-# build the protoco buffers
-Execute(Mkdir("src/proto"))
 
 def ProtobufTarget(target, action):
         proto = Environment(ENV = os.environ,
                             BUILDERS = { 'proto' : Builder(action = action) })
         AlwaysBuild(proto.proto(target = target, source = 'SConstruct'))
 
-ProtobufTarget('PROTOBUF', 'protoc --java_out=src/proto msg/*.proto')
+if ( len(sys.argv) > 1 ):
+    if str(str(sys.argv[1]) == "PROTOBUF"):
+	Execute(Mkdir("src/proto"))
+	ProtobufTarget('PROTOBUF', 'protoc --java_out=src/proto msg/*.proto')
+
+#if the protocol buffer java files have not been created, create them
+if not os.path.isdir("src/proto"):
+    print("You need to build the protocol buffers java files first\n")
+    print("Type: scons PROTOBUF")
+    Exit(0)
 
 #the project expect the following 2 jars to exist
 #append zmq, protocol buffer and classes directory
