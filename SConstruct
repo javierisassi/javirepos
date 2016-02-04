@@ -14,9 +14,12 @@ def ProtobufTarget(target, action):
         AlwaysBuild(proto.proto(target = target, source = 'SConstruct'))
 
 if ( len(sys.argv) > 1 ):
-    if str(str(sys.argv[1]) == "PROTOBUF"):
+    if str(str(sys.argv[1]) == "PROTOBUFJ"):
 	Execute(Mkdir("src/proto"))
-	ProtobufTarget('PROTOBUF', 'protoc --java_out=src/proto msg/*.proto')
+	ProtobufTarget('PROTOBUFJ', 'protoc --java_out=src/proto msg/*.proto')
+    if str(str(sys.argv[1]) == "PROTOBUFP"):
+	Execute(Mkdir("test/proto"))
+	ProtobufTarget('PROTOBUFP', 'protoc --python_out=test msg/*.proto')
 
 #if the protocol buffer java files have not been created, create them
 if not os.path.isdir("src/proto"):
